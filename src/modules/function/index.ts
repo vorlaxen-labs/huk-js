@@ -1,10 +1,10 @@
-export { Timing } from './parts/timing.part';
-export { Composition } from './parts/composition.part';
-export { Control } from './parts/control.part';
+export { Timing } from './timing.part';
+export { Composition } from './composition.part';
+export { Control } from './control.part';
 
-import { Timing } from './parts/timing.part';
-import { Composition } from './parts/composition.part';
-import { Control } from './parts/control.part';
+import { Timing } from './timing.part';
+import { Composition } from './composition.part';
+import { Control } from './control.part';
 
 export const fn = {
   debounce: Timing.debounce,

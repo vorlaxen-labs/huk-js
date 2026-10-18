@@ -1,6 +1,6 @@
 import { createModule } from '../../core/create-module';
-import { arrayTransform } from './parts/transform.part';
-import { arrayUtils } from './parts/utils.part';
+import { arrayTransform } from './transform.part';
+import { arrayUtils } from './utils.part';
 
 const Transform = createModule(arrayTransform);
 const Utils     = createModule(arrayUtils);

@@ -1,9 +1,5 @@
-import { cryptoValidation } from "./parts/validation.part";
-
-const getCrypto = (): Crypto | null => {
-  if (typeof globalThis.crypto !== 'undefined') return globalThis.crypto;
-  return null;
-};
+import { getCrypto } from '../../utils/crypto.util';
+import { cryptoValidation } from './validation.part';
 
 const cryptoObj = getCrypto();
 
@@ -18,10 +14,14 @@ export const crypto = {
   },
 
   toBase64: (data: string): string =>
-    typeof Buffer !== 'undefined' ? Buffer.from(data).toString('base64') : btoa(data),
+    typeof Buffer !== 'undefined'
+      ? Buffer.from(data).toString('base64')
+      : btoa(data),
 
   fromBase64: (data: string): string =>
-    typeof Buffer !== 'undefined' ? Buffer.from(data, 'base64').toString('utf-8') : atob(data),
+    typeof Buffer !== 'undefined'
+      ? Buffer.from(data, 'base64').toString('utf-8')
+      : atob(data),
 
   hash: async (data: string, salt: string = ''): Promise<string> => {
     const saltedData = data + salt;
@@ -32,11 +32,14 @@ export const crypto = {
       const msgUint8 = encoder.encode(saltedData);
       const hashBuffer = await subtle.digest('SHA-256', msgUint8);
       const hashArray = Array.from(new Uint8Array(hashBuffer));
-      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+      return hashArray.map((b) => b.toString(16).padStart(2, '0')).join('');
     }
 
     const nodeCrypto = await import('node:crypto');
-    return nodeCrypto.createHash('sha256').update(saltedData, 'utf8').digest('hex');
+    return nodeCrypto
+      .createHash('sha256')
+      .update(saltedData, 'utf8')
+      .digest('hex');
   },
 
   validate: cryptoValidation,

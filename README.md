@@ -1,88 +1,87 @@
-# ⚓ HuK (Helper Utility Kit)
+# HuK — TypeScript helper utility kit
 
-[![npm version](https://img.shields.io/badge/npm-v1.0.0-orange.svg)](https://www.npmjs.com/package/@vorlaxen-labs/huk)
-[![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)](https://opensource.org/licenses/MIT)
-[![TypeScript](https://img.shields.io/badge/TypeScript-Ready-orange?logo=typescript)](https://www.typescriptlang.org/)
+[![npm version](https://img.shields.io/npm/v/@vorlaxen-labs/huk-js)](https://www.npmjs.com/package/@vorlaxen-labs/huk-js)
+[![CI](https://img.shields.io/github/actions/workflow/status/vorlaxen-labs/huk-js/ci.yml?branch=main&label=CI)](https://github.com/vorlaxen-labs/huk-js/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![TypeScript](https://img.shields.io/badge/TypeScript-ready-blue?logo=typescript)](https://www.typescriptlang.org/)
 
-**Smart helpers for modern TypeScript environments. Small footprint, massive utility.**
+**HuK** is a zero runtime dependency, tree-shakable TypeScript utility library for Node.js and browsers. Use the `HuK` facade or import individual modules (string, crypto, storage, and more). Designed for production apps and pairs well with [`@vorlaxen-labs/bar-js`](https://www.npmjs.com/package/@vorlaxen-labs/bar-js).
 
-`HuK` is a highly-optimized, zero-dependency utility suite designed to bridge the gap between "standard" logic and "smart" execution. It replaces your messy `utils` folder with a single, type-safe source of truth.
+## Table of contents
 
----
+- [When to use HuK](#when-to-use-huk)
+- [Installation](#installation)
+- [Quick start](#quick-start)
+- [Package exports](#package-exports)
+- [Documentation](#documentation)
+- [For maintainers](#for-maintainers)
+- [License](#license)
 
-## 🔥 Why HuK?
+## When to use HuK
 
-Unlike monolithic utility libraries, **HuK** focuses on "Smart" logic:
-*   🚀 **Zero-Dependency:** No bloated node_modules. Pure, high-performance TypeScript.
-*   🌲 **Tree-Shakable:** Only ship the code you actually use.
-*   🛠️ **BaR-Ready:** Designed to work in perfect harmony with `@vorlaxen-labs/bar-js`.
+- You want one typed toolkit instead of a scattered `utils/` folder.
+- You need **Turkish-aware slugify**, validation, masking, and formatting out of the box.
+- You run **SSR** and need storage helpers that no-op safely on the server.
+- You want **subpath imports** so bundlers ship only what you use.
 
----
-
-## 📦 Installation
+## Installation
 
 ```bash
-pnpm add @vorlaxen-labs/huk
-# or
-npm install @vorlaxen-labs/huk
+npm install @vorlaxen-labs/huk-js
 ```
 
----
+```bash
+pnpm add @vorlaxen-labs/huk-js
+```
 
-## 🛠️ Smart Modules
-
-HuK is organized into **Namespaces**. This structure ensures that as the library grows, your implementation remains clean and predictable.
-
-### 📝 `huk.string`
-Advanced string manipulation with deep localization and security support.
-*   **Transformation:** Smart `slugify` with full Turkish character support (ı, ş, ğ, ç, ö, ü), `truncate`, and case mappers (Pascal/Camel).
-*   **Security:** Cryptographically secure random strings, data masking (PII protection), and HTML escaping.
-*   **Validation:** Strict email, strong password, and advanced empty state checks.
-
----
-
-## 🚀 Quick Start
+## Quick start
 
 ```typescript
-import { huk } from '@vorlaxen-labs/huk';
+import { HuK } from '@vorlaxen-labs/huk-js';
 
-// 1. Zero-Fail Slugify (Handles Turkish chars perfectly)
-const slug = huk.string.slugify("Hakan K. - Software Developer!"); 
-// Output: "hakan-k-software-developer"
+const slug = HuK.string.slugify('Hakan K. - Software Developer!');
+// "hakan-k-software-developer"
 
-// 2. Secure PII Masking
-const masked = huk.string.mask("4444555566667777", { visibleEnd: 4 });
-// Output: "************7777"
+const masked = HuK.string.mask('4444555566667777', { visibleEnd: 4 });
+// "************7777"
 
-// 3. Case Transformation
-const camel = huk.string.toCamelCase("user_profile_data");
-// Output: "userProfileData"
+const camel = HuK.string.toCamelCase('user_profile_data');
+// "userProfileData"
 ```
 
----
+## Package exports
 
-## 🧭 Modular Philosophy
+| Import | Purpose |
+|--------|---------|
+| `@vorlaxen-labs/huk-js` | `HuK` facade + named module exports |
+| `@vorlaxen-labs/huk-js/string` | String transforms, security, validation |
+| `@vorlaxen-labs/huk-js/number` | Number validation, math, formatting |
+| `@vorlaxen-labs/huk-js/date` | Date validation and formatting |
+| `@vorlaxen-labs/huk-js/array` | Array utilities |
+| `@vorlaxen-labs/huk-js/object` | Object clone, merge, get, pick |
+| `@vorlaxen-labs/huk-js/storage` | SSR-safe localStorage wrapper |
+| `@vorlaxen-labs/huk-js/crypto` | UUID, base64, SHA-256 hash |
+| `@vorlaxen-labs/huk-js/fn` | debounce, throttle, retry, pipe, memoize |
+| `@vorlaxen-labs/huk-js/is` | Type and empty checks |
 
-To keep your bundles light, HuK supports sub-path imports. As the toolkit expands, you can import only what you need.
+## Documentation
 
-```typescript
-// Import everything
-import { huk } from '@vorlaxen-labs/huk';
+Guides live in **[docs/](docs/README.md)**:
 
-// Or just the string module
-import { string } from '@vorlaxen-labs/huk/string';
-```
+| Guide | Description |
+|-------|-------------|
+| [Getting started](docs/getting-started.md) | Install, exports, v1→v2 notes |
+| [API reference](docs/api-reference.md) | Module overview |
+| [Production](docs/production.md) | SSR, storage, crypto runtime |
+| [Publishing](docs/PUBLISHING.md) | CI and npm release |
 
----
+- npm: [`@vorlaxen-labs/huk-js`](https://www.npmjs.com/package/@vorlaxen-labs/huk-js)
+- Repository: [github.com/vorlaxen-labs/huk-js](https://github.com/vorlaxen-labs/huk-js)
 
-## 📐 Design Principle
+## For maintainers
 
-> **"Don't just write code that works. Write code that assists."**
+See [docs/PUBLISHING.md](docs/PUBLISHING.md) and [docs/REPOSITORY.md](docs/REPOSITORY.md).
 
-`HuK` is built on the principle that utilities shouldn't just be "shorthands"; they should be **smarter** than the code they replace. Every helper in this kit is typed to the teeth, ensuring that if it compiles, it works.
+## License
 
----
-
-## ⚖️ License
-
-Distributed under the MIT License. Created with ❤️ by **@vorlaxen-labs**.
+Distributed under the MIT License. Copyright Vorlaxen Labs. See [LICENSE](LICENSE).

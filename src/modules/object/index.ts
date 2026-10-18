@@ -1,6 +1,6 @@
 import { createModule } from '../../core/create-module';
-import { objectTransform } from './parts/transform.part';
-import { objectQuery } from './parts/query.part';
+import { objectTransform } from './transform.part';
+import { objectQuery } from './query.part';
 
 const Transform = createModule(objectTransform);
 const Query     = createModule(objectQuery);

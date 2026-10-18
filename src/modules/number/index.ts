@@ -1,7 +1,7 @@
 import { createModule } from '../../core/create-module';
-import { numberValidation } from './parts/validation.part';
-import { numberTransform } from './parts/transform.part';
-import { numberFormat } from './parts/format.part';
+import { numberValidation } from './validation.part';
+import { numberTransform } from './transform.part';
+import { numberFormat } from './format.part';
 
 const Validation = createModule(numberValidation);
 const Transform  = createModule(numberTransform);
@@ -45,4 +45,4 @@ export const {
   pad,
 } = number;
 
-export type { CurrencyOptions, FormatOptions } from './parts/format.part';
+export type { CurrencyOptions, FormatOptions } from './format.part';

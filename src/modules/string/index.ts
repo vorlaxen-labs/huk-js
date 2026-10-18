@@ -1,7 +1,7 @@
 import { createModule } from '../../core/create-module';
-import { StringTransform } from './parts/transform.part';
-import { StringSecurity } from './parts/security.part';
-import { StringValidation } from './parts/validation.part';
+import { StringTransform } from './transform.part';
+import { StringSecurity } from './security.part';
+import { StringValidation } from './validation.part';
 
 const Transform  = createModule(StringTransform);
 const Security   = createModule(StringSecurity);
