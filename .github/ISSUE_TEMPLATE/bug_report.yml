@@ -1,5 +1,6 @@
 name: Bug report
 description: Report incorrect behavior
+labels: ["bug"]
 body:
   - type: textarea
     id: description

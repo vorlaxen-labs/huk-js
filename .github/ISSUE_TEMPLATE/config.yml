@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Ask a question
+    url: https://github.com/vorlaxen-labs/huk-js/discussions/categories/q-a
+    about: Usage help and design questions
+  - name: Security advisory
+    url: https://github.com/vorlaxen-labs/huk-js/security/advisories/new
+    about: Report a vulnerability privately
+  - name: npm package
+    url: https://www.npmjs.com/package/@vorlaxen-labs/huk-js
+    about: Install and version history on npm

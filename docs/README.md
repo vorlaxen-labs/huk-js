@@ -18,3 +18,10 @@ Import the root package or a subpath; each subpath maps to one module entry in `
 | [Production](./production.md) | SSR, storage, crypto |
 | [Publishing](./PUBLISHING.md) | Maintainers |
 | [Repository](./REPOSITORY.md) | GitHub/npm SEO checklist |
+
+## Community
+
+- [Contributing](../CONTRIBUTING.md)
+- [Code of conduct](../CODE_OF_CONDUCT.md)
+- [Security](../SECURITY.md)
+- [Changelog](../CHANGELOG.md)
